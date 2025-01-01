@@ -92,12 +92,13 @@
         const mainTitle = document.getElementById("main-title");
 
         title.split("").forEach((char, index) => {
-            const span = document.createElement("span");
-            span.textContent = char;
-            span.className = "fade-in";
-            span.style.animationDelay = `${index * 0.031}s`;
-            mainTitle.appendChild(span);
-        });
+	    const span = document.createElement("span");
+	    // Replace space with non-breaking space HTML entity
+	    span.textContent = char === " " ? "\u00A0" : char;
+	    span.className = "fade-in";
+	    span.style.animationDelay = `${index * 0.031}s`;
+	    mainTitle.appendChild(span);
+	});
     </script>
 </body>
 </html>
