@@ -11,15 +11,34 @@
             margin: 0;
             font-family: 'Space Grotesk', sans-serif;
             display: flex;
-            flex-direction: column; /* Enable vertical stacking */
-            justify-content: center; /* Center the main content */
+            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
             height: 100vh;
             background: #121212;
             color: #ffffff;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
-        .container {
+        .header-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 15vh;
             text-align: center;
+            width: 100%;
+            max-width: 800px;
+        }
+        .form-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 100px;
         }
         h1 {
             font-size: 6rem;
@@ -38,6 +57,121 @@
             display: inline-block;
             opacity: 0;
             animation: fadeInLetter 3.4s forwards;
+        }
+        
+        /* Email form styles */
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .email-form h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        
+        .form-input-group {
+            display: flex;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        
+        .email-input {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #333;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 1rem;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        
+        .email-input:focus {
+            border-color: #555;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .email-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .submit-btn {
+            padding: 15px 25px;
+            background: #ffffff;
+            color: #121212;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 0 5px 5px 0;
+            transition: background 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #f0f0f0;
+        }
+        
+        .submit-btn:disabled {
+            background: #555;
+            color: #999;
+            cursor: not-allowed;
+        }
+        
+        .form-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            width: 100%;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .form-message.success {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+        }
+        
+        .form-message.error {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+        
+        .form-message.visible {
+            opacity: 1;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-container {
+                padding-top: 10vh;
+            }
+            
+            h1 {
+                font-size: 4rem;
+            }
+            
+            .form-input-group {
+                flex-direction: column;
+            }
+            
+            .email-input {
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+            
+            .submit-btn {
+                border-radius: 5px;
+            }
         }
         .social-links {
             position: absolute; /* Position links at the bottom */
@@ -61,11 +195,30 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="header-container">
 		<h1 id="main-title"></h1>
-
         <p>EDC + Fidget</p>
-	<p>Coming Soon</p>
+        <p>Coming Soon</p>
+    </div>
+    
+    <div class="form-container">
+        <div class="email-form">
+            <h3>Get notified when we launch</h3>
+            <form id="mc-form">
+                <div class="form-input-group">
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="email-input"
+                        placeholder="Enter your email address"
+                        required
+                    >
+                    <button type="submit" class="submit-btn" id="submit-btn">Notify Me</button>
+                </div>
+            </form>
+            <div id="form-message" class="form-message"></div>
+        </div>
     </div>
     <div class="social-links">
         <a href="https://www.facebook.com/profile.php?id=61571307931450" target="_blank">
@@ -89,10 +242,10 @@
     </div>
 	
 	    <script>
-        const title = "finemesh labs";
-        const mainTitle = document.getElementById("main-title");
+	       const title = "finemesh labs";
+	       const mainTitle = document.getElementById("main-title");
 
-        title.split("").forEach((char, index) => {
+	       title.split("").forEach((char, index) => {
 	    const span = document.createElement("span");
 	    // Replace space with non-breaking space HTML entity
 	    span.textContent = char === " " ? "\u00A0" : char;
@@ -100,6 +253,90 @@
 	    span.style.animationDelay = `${index * 0.031}s`;
 	    mainTitle.appendChild(span);
 	});
-    </script>
+	       
+	       // Mailchimp form handling
+	       document.addEventListener('DOMContentLoaded', function() {
+	           const form = document.getElementById('mc-form');
+	           const emailInput = document.getElementById('email');
+	           const submitBtn = document.getElementById('submit-btn');
+	           const formMessage = document.getElementById('form-message');
+	           
+	           // Mailchimp configuration
+	           const mailchimpConfig = {
+	               server: 'us15',
+	               audienceId: '0994a7bc1b',
+	               apiKey: 'any-string' // Using proxy approach to avoid exposing API key
+	           };
+	           
+	           form.addEventListener('submit', function(e) {
+	               e.preventDefault();
+	               
+	               const email = emailInput.value.trim();
+	               
+	               // Validate email
+	               if (!isValidEmail(email)) {
+	                   showMessage('Please enter a valid email address', 'error');
+	                   return;
+	               }
+	               
+	               // Disable button during submission
+	               submitBtn.disabled = true;
+	               submitBtn.textContent = 'Subscribing...';
+	               
+	               // Create a new script element to make the request
+	               const script = document.createElement('script');
+	               script.src = `https://${mailchimpConfig.server}.list-manage.com/subscribe/post-json?u=any-string&id=${mailchimpConfig.audienceId}&EMAIL=${encodeURIComponent(email)}&c=callback`;
+	               
+	               // Define the callback function
+	               window.callback = function(response) {
+	                   if (response.result === 'success') {
+	                       showMessage('Thank you for subscribing! We\'ll notify you when we launch.', 'success');
+	                       emailInput.value = '';
+	                   } else {
+	                       let errorMessage = 'Something went wrong. Please try again.';
+	                       
+	                       if (response.msg.includes('already subscribed')) {
+	                           errorMessage = 'You\'re already subscribed! We\'ll notify you when we launch.';
+	                       } else if (response.msg.includes('invalid')) {
+	                           errorMessage = 'Please enter a valid email address.';
+	                       }
+	                       
+	                       showMessage(errorMessage, 'error');
+	                   }
+	                   
+	                   // Reset button state
+	                   submitBtn.disabled = false;
+	                   submitBtn.textContent = 'Notify Me';
+	                   
+	                   // Clean up
+	                   delete window.callback;
+	                   document.body.removeChild(script);
+	               };
+	               
+	               // Add script to page to trigger the request
+	               document.body.appendChild(script);
+	           });
+	           
+	           function isValidEmail(email) {
+	               const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	               return emailRegex.test(email);
+	           }
+	           
+	           function showMessage(message, type) {
+	               formMessage.textContent = message;
+	               formMessage.className = `form-message ${type}`;
+	               
+	               // Make message visible
+	               setTimeout(() => {
+	                   formMessage.classList.add('visible');
+	               }, 10);
+	               
+	               // Hide message after 5 seconds
+	               setTimeout(() => {
+	                   formMessage.classList.remove('visible');
+	               }, 5000);
+	           }
+	       });
+	   </script>
 </body>
 </html>
