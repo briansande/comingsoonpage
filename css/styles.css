@@ -77,7 +77,7 @@
    =================================== */
 body {
     margin: 0;
-    padding: 0;
+    padding: clamp(80px, 15vh, 180px) 0 0 0;
     font-family: 'Space Grotesk', sans-serif;
     display: flex;
     flex-direction: column;
@@ -90,6 +90,7 @@ body {
     width: 100%;
     line-height: 1.6;
     font-size: clamp(1rem, 1rem + var(--fluid-bp) * 0.25, 1.125rem);
+    box-sizing: border-box;
 }
 
 .container {
@@ -98,6 +99,8 @@ body {
     max-width: 100%;
     padding: 0 var(--space-lg);
     box-sizing: border-box;
+    position: relative;
+    z-index: 1;
 }
 
 /* Skip link for accessibility */
@@ -229,8 +232,9 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     gap: var(--space-md);
+    overflow-x: auto;
+    padding: 0 var(--space-sm);
 }
 
 .social-links a {
@@ -580,6 +584,11 @@ footer {
    RESPONSIVE DESIGN
    =================================== */
 @media (max-width: 768px) {
+    /* Adjust adaptive buffer for mobile */
+    body {
+        padding-top: clamp(60px, 12vh, 120px);
+    }
+    
     .container {
         padding: 0 var(--space-md);
         width: 100%;
@@ -613,7 +622,8 @@ footer {
     }
     
     .social-links {
-        gap: var(--space-sm);
+        gap: var(--space-xs);
+        padding: 0 var(--space-xs);
     }
     
     .social-links a img {
@@ -624,7 +634,7 @@ footer {
 
 @media (max-width: 480px) {
     body {
-        padding: 0;
+        padding: clamp(50px, 10vh, 100px) 0 0 0;
         margin: 0;
         overflow-x: hidden;
     }
@@ -674,8 +684,8 @@ footer {
     }
     
     .social-links {
-        gap: var(--space-sm);
-        padding: 0 var(--space-xs);
+        gap: var(--space-xs);
+        padding: 0 5px;
     }
     
     .social-links a img {
@@ -732,6 +742,11 @@ footer {
 
 /* Landscape orientation adjustments */
 @media (max-height: 600px) and (orientation: landscape) {
+    /* Reduce buffer height in landscape mode */
+    body {
+        padding-top: clamp(40px, 8vh, 80px);
+    }
+    
     footer {
         padding: var(--space-md) 0;
     }
