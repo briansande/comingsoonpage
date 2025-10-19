@@ -259,7 +259,7 @@ footer {
     min-width: var(--touch-target-min);
     min-height: var(--touch-target-min);
     padding: 7px;
-    filter: grayscale(100%);
+    filter: grayscale(50%);
     transition: filter 0.3s ease, transform 0.2s ease;
     border-radius: 50%;
 }
