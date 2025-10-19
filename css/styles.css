@@ -150,13 +150,21 @@ body {
    TYPOGRAPHY
    =================================== */
 h1 {
-    font-size: clamp(2rem, 4rem + var(--fluid-bp) * 2, 6rem);
+    font-size: clamp(3rem, 5rem + var(--fluid-bp) * 2.5, 8rem);
     margin: 0;
     color: var(--text-primary);
     letter-spacing: -0.05em;
     font-weight: 300;
     display: inline-block;
     line-height: 1.1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: none;
+}
+
+h1 .word {
+    display: inline-block;
+    white-space: nowrap;
 }
 
 h2, h3 {
@@ -181,6 +189,13 @@ p {
     display: inline-block;
     opacity: 0;
     animation: fadeInLetter 3.4s forwards;
+    vertical-align: baseline;
+}
+
+/* Special styling for word spaces to ensure proper spacing */
+.fade-in.word-space {
+    width: 0.25em;
+    display: inline-block;
 }
 
 /* Respect prefers-reduced-motion */
@@ -596,6 +611,17 @@ footer {
         box-sizing: border-box;
     }
     
+    h1 {
+        font-size: clamp(2.8rem, 4rem, 5rem);
+        text-align: center;
+    }
+    
+    /* Allow words to wrap on medium screens */
+    h1 .word {
+        display: inline-block;
+        white-space: nowrap;
+    }
+    
     #mc_embed_shell {
         width: 100%;
         max-width: 100%;
@@ -646,6 +672,14 @@ footer {
     
     h1 {
         font-size: clamp(2.5rem, 3.5rem, 4rem);
+        text-align: center;
+    }
+    
+    /* Force words to stack on very small screens */
+    h1 .word {
+        display: block;
+        text-align: center;
+        margin: -0.05em 0;
     }
     
     #mc_embed_shell {
@@ -716,6 +750,14 @@ footer {
 @media (max-width: 360px) {
     h1 {
         font-size: clamp(2rem, 3rem, 3.5rem);
+        text-align: center;
+    }
+    
+    /* Force words to stack on very small screens */
+    h1 .word {
+        display: block;
+        text-align: center;
+        margin: -0.05em 0;
     }
     
     #mc_embed_signup {

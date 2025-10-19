@@ -501,13 +501,35 @@ function initTitleAnimation() {
    const title = "finemesh labs";
    const mainTitle = document.getElementById("main-title");
 
-   title.split("").forEach((char, index) => {
-       const span = document.createElement("span");
-       // Replace space with non-breaking space HTML entity
-       span.textContent = char === " " ? "\u00A0" : char;
-       span.className = "fade-in";
-       span.style.animationDelay = `${index * 0.031}s`;
-       mainTitle.appendChild(span);
+   // Split title into words
+   const words = title.split(" ");
+   
+   words.forEach((word, wordIndex) => {
+       // Create a span for each word to keep words together
+       const wordSpan = document.createElement("span");
+       wordSpan.className = "word";
+       
+       // Split each word into characters for animation
+       word.split("").forEach((char, charIndex) => {
+           const charSpan = document.createElement("span");
+           charSpan.textContent = char;
+           charSpan.className = "fade-in";
+           // Calculate delay based on both word and character position
+           const totalIndex = wordIndex * word.length + charIndex;
+           charSpan.style.animationDelay = `${totalIndex * 0.031}s`;
+           wordSpan.appendChild(charSpan);
+       });
+       
+       mainTitle.appendChild(wordSpan);
+       
+       // Add a space between words (except after the last word)
+       if (wordIndex < words.length - 1) {
+           const spaceSpan = document.createElement("span");
+           spaceSpan.textContent = " ";
+           spaceSpan.className = "fade-in word-space";
+           spaceSpan.style.animationDelay = `${(wordIndex + 1) * word.length * 0.031}s`;
+           mainTitle.appendChild(spaceSpan);
+       }
    });
 }
 
