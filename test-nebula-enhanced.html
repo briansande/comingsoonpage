@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finemesh Labs - Enhanced Nebula Background Test</title>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- External Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+    <script>
+        (function($) {
+            window.fnames = new Array();
+            window.ftypes = new Array();
+            fnames[0] = 'EMAIL';
+            ftypes[0] = 'email';
+            fnames[1] = 'FNAME';
+            ftypes[1] = 'text';
+            fnames[2] = 'LNAME';
+            ftypes[2] = 'text';
+            fnames[3] = 'ADDRESS';
+            ftypes[3] = 'address';
+            fnames[4] = 'PHONE';
+            ftypes[4] = 'phone';
+            fnames[5] = 'BIRTHDAY';
+            ftypes[5] = 'birthday';
+            fnames[6] = 'COMPANY';
+            ftypes[6] = 'text';
+        })(jQuery);
+        var $mcj = jQuery.noConflict(true);
+    </script>
+    <script src="js/script.js" defer></script>
+    
+    <style>
+        /* Enhanced Nebula Background Styles */
+        .nebula-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .nebula-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        
+        .nebula-layer-1 {
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(255, 140, 90, 0.25) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 70%, rgba(255, 105, 180, 0.22) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 50%, rgba(99, 102, 241, 0.18) 0%, transparent 50%),
+                radial-gradient(ellipse at 35% 65%, rgba(0, 0, 0, 0.8) 0%, transparent 30%),
+                radial-gradient(ellipse at 75% 25%, rgba(0, 0, 0, 0.7) 0%, transparent 35%);
+            animation: nebula-drift-1 30s ease-in-out infinite;
+        }
+        
+        .nebula-layer-2 {
+            background: 
+                radial-gradient(ellipse at 70% 20%, rgba(255, 165, 120, 0.2) 0%, transparent 35%),
+                radial-gradient(ellipse at 30% 80%, rgba(255, 182, 193, 0.18) 0%, transparent 40%),
+                radial-gradient(ellipse at 60% 60%, rgba(168, 85, 247, 0.15) 0%, transparent 45%),
+                radial-gradient(ellipse at 45% 35%, rgba(0, 0, 0, 0.6) 0%, transparent 25%),
+                radial-gradient(ellipse at 85% 75%, rgba(0, 0, 0, 0.75) 0%, transparent 30%);
+            animation: nebula-drift-2 40s ease-in-out infinite;
+            mix-blend-mode: screen;
+        }
+        
+        .nebula-layer-3 {
+            background: 
+                radial-gradient(ellipse at 40% 60%, rgba(255, 130, 171, 0.16) 0%, transparent 40%),
+                radial-gradient(ellipse at 60% 40%, rgba(255, 160, 122, 0.14) 0%, transparent 35%),
+                radial-gradient(ellipse at 80% 80%, rgba(99, 102, 241, 0.12) 0%, transparent 45%),
+                radial-gradient(ellipse at 25% 75%, rgba(0, 0, 0, 0.85) 0%, transparent 28%),
+                radial-gradient(ellipse at 65% 15%, rgba(0, 0, 0, 0.7) 0%, transparent 32%);
+            animation: nebula-drift-3 50s ease-in-out infinite;
+            mix-blend-mode: overlay;
+        }
+        
+        @keyframes nebula-drift-1 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+                opacity: 0.8;
+            }
+            20% {
+                transform: translate(-40px, -25px) scale(1.15) rotate(3deg);
+                opacity: 0.9;
+            }
+            40% {
+                transform: translate(30px, -40px) scale(0.85) rotate(-2deg);
+                opacity: 0.7;
+            }
+            60% {
+                transform: translate(-25px, 35px) scale(1.1) rotate(2deg);
+                opacity: 0.85;
+            }
+            80% {
+                transform: translate(15px, 20px) scale(0.95) rotate(-1deg);
+                opacity: 0.75;
+            }
+        }
+        
+        @keyframes nebula-drift-2 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+                opacity: 0.7;
+            }
+            25% {
+                transform: translate(35px, 45px) scale(1.2) rotate(-3deg);
+                opacity: 0.85;
+            }
+            50% {
+                transform: translate(-45px, 30px) scale(0.8) rotate(2deg);
+                opacity: 0.6;
+            }
+            75% {
+                transform: translate(25px, -35px) scale(1.15) rotate(-2deg);
+                opacity: 0.8;
+            }
+        }
+        
+        @keyframes nebula-drift-3 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+                opacity: 0.6;
+            }
+            15% {
+                transform: translate(-30px, -30px) scale(1.25) rotate(2deg);
+                opacity: 0.75;
+            }
+            30% {
+                transform: translate(40px, -25px) scale(0.75) rotate(-3deg);
+                opacity: 0.5;
+            }
+            45% {
+                transform: translate(-35px, 40px) scale(1.2) rotate(1.5deg);
+                opacity: 0.7;
+            }
+            60% {
+                transform: translate(20px, 30px) scale(0.85) rotate(-1.5deg);
+                opacity: 0.55;
+            }
+            75% {
+                transform: translate(-20px, -20px) scale(1.1) rotate(1deg);
+                opacity: 0.65;
+            }
+            90% {
+                transform: translate(30px, 15px) scale(0.9) rotate(-0.5deg);
+                opacity: 0.6;
+            }
+        }
+        
+        /* Respect prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            .nebula-layer {
+                animation: none !important;
+                transition: none !important;
+            }
+            
+            .nebula-layer-1,
+            .nebula-layer-2,
+            .nebula-layer-3 {
+                transform: none !important;
+                opacity: 0.5 !important;
+            }
+        }
+        
+        /* Test page indicator */
+        .test-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 140, 90, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            z-index: 1000;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        /* Navigation links */
+        .test-navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 10px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .test-navigation a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .test-navigation a:hover,
+        .test-navigation a:focus {
+            color: var(--text-primary);
+            background: rgba(255, 140, 90, 0.2);
+        }
+        
+        .test-navigation a.active {
+            background: var(--accent);
+            color: var(--text-primary);
+        }
+        
+        /* Adjust body background to work with nebula */
+        body {
+            background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip navigation link for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Test page indicator -->
+    <div class="test-indicator" role="status" aria-live="polite">
+        Testing: Enhanced Nebula Effect
+    </div>
+    
+    <!-- Nebula Background -->
+    <div class="nebula-background" aria-hidden="true">
+        <div class="nebula-layer nebula-layer-1"></div>
+        <div class="nebula-layer nebula-layer-2"></div>
+        <div class="nebula-layer nebula-layer-3"></div>
+    </div>
+    
+    <header role="banner">
+        <div class="container">
+            <h1 id="main-title"></h1>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <div class="container">
+            <section aria-labelledby="coming-soon-heading">
+                <h2 id="coming-soon-heading" class="visually-hidden">Coming Soon Information</h2>
+                <p>EDC + Fidget</p>
+                <p>Coming Soon</p>
+            </section>
+            
+            <section aria-labelledby="signup-heading">
+                <h2 id="signup-heading" class="visually-hidden">Newsletter Signup</h2>
+                
+                <!-- Mailchimp Signup Form -->
+                <div id="mc_embed_shell">
+                    <link rel="stylesheet" href="https://cdn-images.mailchimp.com/embedcode/classic-061523.css">
+                    <div id="mc_embed_signup">
+                        <form action="https://finemeshlabs.us15.list-manage.com/subscribe/post?u=e6b978587cd4d25cdff6c9a1c&id=0994a7bc1b&f_id=00f26ce0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate aria-labelledby="signup-heading">
+                            <div id="mc_embed_signup_scroll">
+                                <h3>Get notified when we launch!</h3>
+                                <div class="mc-field-group">
+                                    <label for="mce-EMAIL" id="email-label">
+                                        Email Address
+                                        <span class="sr-only">required</span>
+                                    </label>
+                                    <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="" aria-describedby="email-label email-help email-error" aria-required="true">
+                                    <div id="email-help" class="field-help">
+                                        We'll never share your email with anyone else.
+                                    </div>
+                                </div>
+                                <div id="mce-responses" class="clear foot" role="alert" aria-live="polite">
+                                    <div class="response" id="mce-error-response" style="display: none;" role="alert"></div>
+                                    <div class="response" id="mce-success-response" style="display: none;" role="status"></div>
+                                </div>
+                                <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                                    /* real people should not fill this in and expect good things - do not remove this or risk form bot signups */
+                                    <input type="text" name="b_e6b978587cd4d25cdff6c9a1c_0994a7bc1b" tabindex="-1" value="">
+                                </div>
+                                <div class="optionalParent">
+                                    <div class="clear foot">
+                                        <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Sign up" aria-describedby="submit-help">
+                                        <div id="submit-help" class="sr-only">
+                                            Submits your email to our notification list
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer role="contentinfo">
+        <nav aria-label="Social Media Links">
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61571307931450" target="_blank" aria-label="Visit Finemesh Labs on Facebook">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/finemesh.labs/" target="_blank" aria-label="Visit Finemesh Labs on Instagram">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram">
+                </a>
+                <a href="https://www.youtube.com/@Finemesh" target="_blank" aria-label="Visit Finemesh Labs on YouTube">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube">
+                </a>
+            </div>
+        </nav>
+    </footer>
+    
+    <!-- Test Navigation -->
+    <nav class="test-navigation" aria-label="Test Page Navigation">
+        <a href="test-stars.html">Floating Stars</a>
+        <a href="test-nebula.html">Original Nebula</a>
+        <a href="test-nebula-enhanced.html" class="active" aria-current="page">Enhanced Nebula</a>
+        <a href="index.html">Original</a>
+    </nav>
+    
+    <!-- Enhanced Nebula Script -->
+    <script>
+        // Enhanced nebula effect with more dynamic movement
+        class EnhancedNebula {
+            constructor() {
+                this.layers = document.querySelectorAll('.nebula-layer');
+                this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                this.mouseX = 0;
+                this.mouseY = 0;
+                this.currentX = 0;
+                this.currentY = 0;
+                this.init();
+            }
+            
+            init() {
+                // Handle reduced motion preference changes
+                window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
+                    this.reducedMotion = e.matches;
+                    this.updateAnimationState();
+                });
+                
+                // Add enhanced parallax effect on mouse movement
+                if (!this.reducedMotion) {
+                    this.initEnhancedParallax();
+                }
+                
+                // Add subtle color shifting
+                if (!this.reducedMotion) {
+                    this.initColorShift();
+                }
+            }
+            
+            initEnhancedParallax() {
+                document.addEventListener('mousemove', (e) => {
+                    this.mouseX = (e.clientX / window.innerWidth - 0.5) * 40; // Increased movement
+                    this.mouseY = (e.clientY / window.innerHeight - 0.5) * 40; // Increased movement
+                });
+                
+                const animate = () => {
+                    if (this.reducedMotion) return;
+                    
+                    this.currentX += (this.mouseX - this.currentX) * 0.08; // Faster response
+                    this.currentY += (this.mouseY - this.currentY) * 0.08; // Faster response
+                    
+                    this.layers.forEach((layer, index) => {
+                        const depth = (index + 1) * 0.8; // Increased depth effect
+                        const rotation = (this.currentX * 0.1) * (index + 1); // Add rotation
+                        layer.style.transform = `translate(${this.currentX * depth}px, ${this.currentY * depth}px) rotate(${rotation}deg)`;
+                    });
+                    
+                    requestAnimationFrame(animate);
+                };
+                
+                animate();
+            }
+            
+            initColorShift() {
+                // Add subtle color shifting to enhance the dynamic feel
+                setInterval(() => {
+                    if (this.reducedMotion) return;
+                    
+                    const hueShift = Math.sin(Date.now() * 0.0001) * 10;
+                    this.layers.forEach((layer, index) => {
+                        const filter = `hue-rotate(${hueShift * (index + 1)}deg)`;
+                        layer.style.filter = filter;
+                    });
+                }, 50);
+            }
+            
+            updateAnimationState() {
+                this.layers.forEach(layer => {
+                    if (this.reducedMotion) {
+                        layer.style.animation = 'none';
+                        layer.style.transform = 'none';
+                        layer.style.filter = 'none';
+                    } else {
+                        // Restore original animations
+                        layer.style.animation = '';
+                        layer.style.filter = '';
+                    }
+                });
+            }
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the existing functionality from script.js
+            if (typeof initTitleAnimation === 'function') initTitleAnimation();
+            if (typeof initKeyboardNavigation === 'function') initKeyboardNavigation();
+            if (typeof initFormHandling === 'function') initFormHandling();
+            if (typeof optimizeImages === 'function') optimizeImages();
+            
+            // Initialize enhanced nebula
+            const nebula = new EnhancedNebula();
+        });
+    </script>
+</body>
+</html>

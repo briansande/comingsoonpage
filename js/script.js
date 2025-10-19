@@ -824,3 +824,77 @@ function optimizeImages() {
 
 // Initialize image optimization
 document.addEventListener('DOMContentLoaded', optimizeImages);
+
+/* ===================================
+   NEBULA BACKGROUND ENHANCEMENT
+   =================================== */
+
+/**
+ * Nebula effect enhancements with parallax and accessibility
+ */
+class NebulaEnhancer {
+    constructor() {
+        this.layers = document.querySelectorAll('.nebula-layer');
+        this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        this.init();
+    }
+    
+    init() {
+        // Handle reduced motion preference changes
+        window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
+            this.reducedMotion = e.matches;
+            this.updateAnimationState();
+        });
+        
+        // Add subtle parallax effect on mouse movement (only if not reduced motion)
+        if (!this.reducedMotion) {
+            this.initParallax();
+        }
+    }
+    
+    initParallax() {
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
+        });
+        
+        const animate = () => {
+            if (this.reducedMotion) return;
+            
+            currentX += (mouseX - currentX) * 0.05;
+            currentY += (mouseY - currentY) * 0.05;
+            
+            this.layers.forEach((layer, index) => {
+                const depth = (index + 1) * 0.5;
+                layer.style.transform = `translate(${currentX * depth}px, ${currentY * depth}px)`;
+            });
+            
+            requestAnimationFrame(animate);
+        };
+        
+        animate();
+    }
+    
+    updateAnimationState() {
+        this.layers.forEach(layer => {
+            if (this.reducedMotion) {
+                layer.style.animation = 'none';
+                layer.style.transform = 'none';
+            } else {
+                // Restore original animations
+                layer.style.animation = '';
+            }
+        });
+    }
+}
+
+// Initialize nebula enhancer when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize nebula enhancer
+    const nebula = new NebulaEnhancer();
+});
