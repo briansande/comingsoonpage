@@ -1,0 +1,274 @@
+/* ===================================
+   FONT IMPORTS
+   =================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@300;400;500;700&display=swap');
+
+/* ===================================
+   BASE STYLES
+   =================================== */
+body {
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #121212;
+    color: #ffffff;
+}
+
+.container {
+    text-align: center;
+}
+
+/* ===================================
+   TYPOGRAPHY
+   =================================== */
+h1 {
+    font-size: 6rem;
+    margin: 0;
+    color: #ffffff;
+    letter-spacing: -0.07em;
+    font-weight: 300;
+    display: inline-block;
+}
+
+/* ===================================
+   ANIMATIONS
+   =================================== */
+@keyframes fadeInLetter {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    display: inline-block;
+    opacity: 0;
+    animation: fadeInLetter 3.4s forwards;
+}
+
+/* ===================================
+   SOCIAL LINKS
+   =================================== */
+.social-links {
+    position: absolute;
+    bottom: 20px;
+}
+
+.social-links a {
+    margin: 0 10px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    filter: grayscale(100%);
+    transition: filter 0.3s;
+}
+
+.social-links a:hover {
+    filter: grayscale(0%);
+}
+
+.social-links a img {
+    width: 100%;
+    height: 100%;
+}
+
+/* ===================================
+   MAILCHIMP FORM STYLES
+   =================================== */
+#mc_embed_signup {
+    background: linear-gradient(145deg, #1a1a1a, #252525);
+    clear: left;
+    font: 16px 'Space Grotesk', sans-serif;
+    width: 100%;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 35px 40px;
+    border-radius: 16px;
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+                0 1px 8px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#mc_embed_signup:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4),
+                0 1px 8px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+#mc_embed_signup h2 {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 24px;
+    letter-spacing: -0.5px;
+}
+
+#mc_embed_signup .indicates-required {
+    color: #a0a0a0;
+    font-size: 13px;
+    margin-bottom: 25px;
+    opacity: 0.8;
+}
+
+#mc_embed_signup label {
+    color: #e0e0e0;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+    font-size: 15px;
+}
+
+#mc_embed_signup .mc-field-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* ===================================
+   FORM INPUT STYLES
+   =================================== */
+#mc_embed_signup input.email {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border: 2px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    padding: 14px 16px !important;
+    width: 100% !important;
+    border-radius: 10px !important;
+    margin-bottom: 5px !important;
+    font-size: 16px !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+    height: 48px !important;
+    line-height: 1.2 !important;
+}
+
+#mc_embed_signup input.email:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+#mc_embed_signup input.email::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* ===================================
+   FORM BUTTON STYLES
+   =================================== */
+#mc_embed_signup .clear.foot {
+    margin-top: 10px !important;
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+#mc_embed_signup .optionalParent {
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+#mc_embed_signup input.button {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 14px 16px !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    letter-spacing: 0.5px !important;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 48px !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    display: block !important;
+    margin: 0 !important;
+    float: none !important;
+    line-height: 1.2 !important;
+}
+
+#mc_embed_signup input.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(99, 102, 241, 0.4);
+    background: linear-gradient(135deg, #7c7ff3, #9d70ff);
+}
+
+#mc_embed_signup input.button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(99, 102, 241, 0.3);
+}
+
+/* ===================================
+   FORM FOOTER STYLES
+   =================================== */
+#mc_embed_signup .foot {
+    text-align: center;
+    margin-top: 20px;
+    display: block !important;
+    grid-template-columns: none !important;
+    grid-gap: 0 !important;
+}
+
+#mc_embed_signup .foot p {
+    margin: 8px 0;
+    font-size: 13px;
+    color: #888888;
+    opacity: 0.7;
+}
+
+/* ===================================
+   FORM RESPONSE STYLES
+   =================================== */
+#mce-responses {
+    margin-top: 15px;
+}
+
+#mce-error-response, #mce-success-response {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+#mce-error-response {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #fca5a5;
+}
+
+#mce-success-response {
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #86efac;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+@media (max-width: 600px) {
+    #mc_embed_signup {
+        padding: 25px 20px;
+        margin: 20px auto;
+    }
+    
+    #mc_embed_signup h2 {
+        font-size: 22px;
+    }
+    
+    #mc_embed_signup input.email,
+    #mc_embed_signup input.button {
+        font-size: 15px;
+    }
+}
