@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finemesh Labs - Floating Stars Background Test</title>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- External Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+    <script>
+        (function($) {
+            window.fnames = new Array();
+            window.ftypes = new Array();
+            fnames[0] = 'EMAIL';
+            ftypes[0] = 'email';
+            fnames[1] = 'FNAME';
+            ftypes[1] = 'text';
+            fnames[2] = 'LNAME';
+            ftypes[2] = 'text';
+            fnames[3] = 'ADDRESS';
+            ftypes[3] = 'address';
+            fnames[4] = 'PHONE';
+            ftypes[4] = 'phone';
+            fnames[5] = 'BIRTHDAY';
+            ftypes[5] = 'birthday';
+            fnames[6] = 'COMPANY';
+            ftypes[6] = 'text';
+        })(jQuery);
+        var $mcj = jQuery.noConflict(true);
+    </script>
+    <script src="js/script.js" defer></script>
+    
+    <style>
+        /* Floating Stars Background Styles */
+        #stars-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.8;
+        }
+        
+        /* Respect prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            #stars-canvas {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+        
+        /* Test page indicator */
+        .test-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(99, 102, 241, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            z-index: 1000;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        /* Navigation links */
+        .test-navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.9);
+            padding: 10px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .test-navigation a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .test-navigation a:hover,
+        .test-navigation a:focus {
+            color: var(--text-primary);
+            background: rgba(99, 102, 241, 0.2);
+        }
+        
+        .test-navigation a.active {
+            background: var(--accent);
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip navigation link for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Test page indicator -->
+    <div class="test-indicator" role="status" aria-live="polite">
+        Testing: Floating Stars Effect
+    </div>
+    
+    <!-- Floating Stars Canvas -->
+    <canvas id="stars-canvas" aria-hidden="true"></canvas>
+    
+    <header role="banner">
+        <div class="container">
+            <h1 id="main-title"></h1>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <div class="container">
+            <section aria-labelledby="coming-soon-heading">
+                <h2 id="coming-soon-heading" class="visually-hidden">Coming Soon Information</h2>
+                <p>EDC + Fidget</p>
+                <p>Coming Soon</p>
+            </section>
+            
+            <section aria-labelledby="signup-heading">
+                <h2 id="signup-heading" class="visually-hidden">Newsletter Signup</h2>
+                
+                <!-- Mailchimp Signup Form -->
+                <div id="mc_embed_shell">
+                    <link rel="stylesheet" href="https://cdn-images.mailchimp.com/embedcode/classic-061523.css">
+                    <div id="mc_embed_signup">
+                        <form action="https://finemeshlabs.us15.list-manage.com/subscribe/post?u=e6b978587cd4d25cdff6c9a1c&id=0994a7bc1b&f_id=00f26ce0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate aria-labelledby="signup-heading">
+                            <div id="mc_embed_signup_scroll">
+                                <h3>Get notified when we launch!</h3>
+                                <div class="mc-field-group">
+                                    <label for="mce-EMAIL" id="email-label">
+                                        Email Address
+                                        <span class="sr-only">required</span>
+                                    </label>
+                                    <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="" aria-describedby="email-label email-help email-error" aria-required="true">
+                                    <div id="email-help" class="field-help">
+                                        We'll never share your email with anyone else.
+                                    </div>
+                                </div>
+                                <div id="mce-responses" class="clear foot" role="alert" aria-live="polite">
+                                    <div class="response" id="mce-error-response" style="display: none;" role="alert"></div>
+                                    <div class="response" id="mce-success-response" style="display: none;" role="status"></div>
+                                </div>
+                                <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                                    /* real people should not fill this in and expect good things - do not remove this or risk form bot signups */
+                                    <input type="text" name="b_e6b978587cd4d25cdff6c9a1c_0994a7bc1b" tabindex="-1" value="">
+                                </div>
+                                <div class="optionalParent">
+                                    <div class="clear foot">
+                                        <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Sign up" aria-describedby="submit-help">
+                                        <div id="submit-help" class="sr-only">
+                                            Submits your email to our notification list
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer role="contentinfo">
+        <nav aria-label="Social Media Links">
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61571307931450" target="_blank" aria-label="Visit Finemesh Labs on Facebook">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/finemesh.labs/" target="_blank" aria-label="Visit Finemesh Labs on Instagram">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram">
+                </a>
+                <a href="https://www.youtube.com/@Finemesh" target="_blank" aria-label="Visit Finemesh Labs on YouTube">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube">
+                </a>
+            </div>
+        </nav>
+    </footer>
+    
+    <!-- Test Navigation -->
+    <nav class="test-navigation" aria-label="Test Page Navigation">
+        <a href="test-stars.html" class="active" aria-current="page">Floating Stars</a>
+        <a href="test-nebula.html">Nebula Effect</a>
+        <a href="index.html">Original</a>
+    </nav>
+    
+    <!-- Floating Stars Script -->
+    <script>
+        // Floating stars animation
+        class FloatingStars {
+            constructor() {
+                this.canvas = document.getElementById('stars-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.stars = [];
+                this.numStars = 150;
+                this.animationId = null;
+                this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                
+                this.init();
+            }
+            
+            init() {
+                this.resizeCanvas();
+                this.createStars();
+                this.animate();
+                
+                // Handle resize
+                window.addEventListener('resize', () => this.resizeCanvas());
+                
+                // Handle reduced motion preference changes
+                window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
+                    this.reducedMotion = e.matches;
+                    if (this.reducedMotion) {
+                        this.stopAnimation();
+                    } else {
+                        this.animate();
+                    }
+                });
+            }
+            
+            resizeCanvas() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+            
+            createStars() {
+                this.stars = [];
+                for (let i = 0; i < this.numStars; i++) {
+                    this.stars.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        size: Math.random() * 2 + 0.5,
+                        speedX: (Math.random() - 0.5) * 0.3, // Very slow drift
+                        speedY: (Math.random() - 0.5) * 0.3, // Very slow drift
+                        opacity: Math.random() * 0.8 + 0.2,
+                        twinkleSpeed: Math.random() * 0.02 + 0.01,
+                        twinklePhase: Math.random() * Math.PI * 2
+                    });
+                }
+            }
+            
+            updateStar(star) {
+                // Move star
+                star.x += star.speedX;
+                star.y += star.speedY;
+                
+                // Wrap around screen
+                if (star.x < 0) star.x = this.canvas.width;
+                if (star.x > this.canvas.width) star.x = 0;
+                if (star.y < 0) star.y = this.canvas.height;
+                if (star.y > this.canvas.height) star.y = 0;
+                
+                // Twinkle effect
+                star.twinklePhase += star.twinkleSpeed;
+                const twinkle = Math.sin(star.twinklePhase) * 0.3 + 0.7;
+                star.currentOpacity = star.opacity * twinkle;
+            }
+            
+            drawStar(star) {
+                this.ctx.save();
+                this.ctx.fillStyle = `rgba(255, 255, 255, ${star.currentOpacity})`;
+                this.ctx.shadowBlur = star.size * 2;
+                this.ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+                this.ctx.beginPath();
+                this.ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                this.ctx.fill();
+                this.ctx.restore();
+            }
+            
+            animate() {
+                if (this.reducedMotion) {
+                    // Just draw static stars for reduced motion
+                    this.drawStaticStars();
+                    return;
+                }
+                
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                for (const star of this.stars) {
+                    this.updateStar(star);
+                    this.drawStar(star);
+                }
+                
+                this.animationId = requestAnimationFrame(() => this.animate());
+            }
+            
+            drawStaticStars() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                for (const star of this.stars) {
+                    this.ctx.save();
+                    this.ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                    this.ctx.beginPath();
+                    this.ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    this.ctx.restore();
+                }
+            }
+            
+            stopAnimation() {
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                    this.animationId = null;
+                }
+                this.drawStaticStars();
+            }
+        }
+        
+        // Initialize stars when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the existing functionality from script.js
+            if (typeof initTitleAnimation === 'function') initTitleAnimation();
+            if (typeof initKeyboardNavigation === 'function') initKeyboardNavigation();
+            if (typeof initFormHandling === 'function') initFormHandling();
+            if (typeof optimizeImages === 'function') optimizeImages();
+            
+            // Initialize floating stars
+            const stars = new FloatingStars();
+        });
+    </script>
+</body>
+</html>
