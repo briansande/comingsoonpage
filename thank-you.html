@@ -13,48 +13,63 @@
     <script src="js/script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1 id="main-title"></h1>
-        
-        <div class="thank-you-content">
-            <div class="success-icon">
-                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="40" cy="40" r="38" stroke="#86efac" stroke-width="4"/>
-                    <path d="M25 40L35 50L55 30" stroke="#86efac" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            
-            <h2>Thank You for Signing Up!</h2>
-            <p class="thank-you-message">
-                We're excited to have you on board. You'll be the first to know when we launch our innovative EDC + Fidget products.
-            </p>
-            
-            <button class="home-button" onclick="goToHomepage()">
-                Back to Homepage
-            </button>
-        </div>
-    </div>
+    <!-- Skip navigation link for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     
-    <div class="social-links">
-        <a href="https://www.facebook.com/profile.php?id=61571307931450" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
-        </a>
-        <a href="https://x.com/finemeshlabs" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg" alt="Twitter">
-        </a>
-        <a href="https://www.instagram.com/finemesh.labs/" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram">
-        </a>
-        <a href="https://bsky.app/profile/finemesh.bsky.social" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Bluesky_Logo.svg" alt="Bluesky">
-        </a>
-        <a href="https://www.youtube.com/@Finemesh" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube">
-        </a>
-        <a href="https://www.threads.net/@finemesh.labs" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Threads_%28app%29.svg" alt="Threads">
-        </a>
-    </div>
+    <header role="banner">
+        <div class="container">
+            <h1 id="main-title"></h1>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <div class="container">
+            <section aria-labelledby="thank-you-heading">
+                <div class="thank-you-content">
+                    <div class="success-icon" role="img" aria-label="Success checkmark">
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <circle cx="40" cy="40" r="38" stroke="#86efac" stroke-width="4"/>
+                            <path d="M25 40L35 50L55 30" stroke="#86efac" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    
+                    <h2 id="thank-you-heading">Thank You for Signing Up!</h2>
+                    <p class="thank-you-message">
+                        We're excited to have you on board. You'll be the first to know when we launch our innovative EDC + Fidget products.
+                    </p>
+                    
+                    <button class="home-button" onclick="goToHomepage()" aria-label="Return to the homepage">
+                        Back to Homepage
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer role="contentinfo">
+        <nav aria-label="Social Media Links">
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61571307931450" target="_blank" aria-label="Visit Finemesh Labs on Facebook">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+                </a>
+                <a href="https://x.com/finemeshlabs" target="_blank" aria-label="Visit Finemesh Labs on X (formerly Twitter)">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg" alt="X">
+                </a>
+                <a href="https://www.instagram.com/finemesh.labs/" target="_blank" aria-label="Visit Finemesh Labs on Instagram">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram">
+                </a>
+                <a href="https://bsky.app/profile/finemesh.bsky.social" target="_blank" aria-label="Visit Finemesh Labs on Bluesky">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Bluesky_Logo.svg" alt="Bluesky">
+                </a>
+                <a href="https://www.youtube.com/@Finemesh" target="_blank" aria-label="Visit Finemesh Labs on YouTube">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube">
+                </a>
+                <a href="https://www.threads.net/@finemesh.labs" target="_blank" aria-label="Visit Finemesh Labs on Threads">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Threads_%28app%29.svg" alt="Threads">
+                </a>
+            </div>
+        </nav>
+    </footer>
 
     <script>
         function goToHomepage() {

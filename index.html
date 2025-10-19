@@ -35,61 +35,91 @@
     <script src="js/script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1 id="main-title"></h1>
-
-        <p>EDC + Fidget</p>
-        <p>Coming Soon</p>
+    <!-- Skip navigation link for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     
-        <!-- Mailchimp Signup Form -->
-        <div id="mc_embed_shell">
-            <link rel="stylesheet" href="https://cdn-images.mailchimp.com/embedcode/classic-061523.css">
-            <div id="mc_embed_signup">
-                <form action="https://finemeshlabs.us15.list-manage.com/subscribe/post?u=e6b978587cd4d25cdff6c9a1c&id=0994a7bc1b&f_id=00f26ce0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-                    <div id="mc_embed_signup_scroll">
-                        <h2>Get notified when we launch!</h2>
-                        <div class="mc-field-group">
-                            <label for="mce-EMAIL">Email Address</label>
-                            <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="">
-                        </div>
-                        <div id="mce-responses" class="clear foot">
-                            <div class="response" id="mce-error-response" style="display: none;"></div>
-                            <div class="response" id="mce-success-response" style="display: none;"></div>
-                        </div>
-                        <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                            /* real people should not fill this in and expect good things - do not remove this or risk form bot signups */
-                            <input type="text" name="b_e6b978587cd4d25cdff6c9a1c_0994a7bc1b" tabindex="-1" value="">
-                        </div>
-                        <div class="optionalParent">
-                            <div class="clear foot">
-                                <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Sign up">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+    <header role="banner">
+        <div class="container">
+            <h1 id="main-title"></h1>
         </div>
-    </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <div class="container">
+            <section aria-labelledby="coming-soon-heading">
+                <h2 id="coming-soon-heading" class="visually-hidden">Coming Soon Information</h2>
+                <p>EDC + Fidget</p>
+                <p>Coming Soon</p>
+            </section>
+            
+            <section aria-labelledby="signup-heading">
+                <h2 id="signup-heading" class="visually-hidden">Newsletter Signup</h2>
+                
+                <!-- Mailchimp Signup Form -->
+                <div id="mc_embed_shell">
+                    <link rel="stylesheet" href="https://cdn-images.mailchimp.com/embedcode/classic-061523.css">
+                    <div id="mc_embed_signup">
+                        <form action="https://finemeshlabs.us15.list-manage.com/subscribe/post?u=e6b978587cd4d25cdff6c9a1c&id=0994a7bc1b&f_id=00f26ce0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate aria-labelledby="signup-heading">
+                            <div id="mc_embed_signup_scroll">
+                                <h3>Get notified when we launch!</h3>
+                                <div class="mc-field-group">
+                                    <label for="mce-EMAIL" id="email-label">
+                                        Email Address
+                                        <span class="asterisk" aria-hidden="true">*</span>
+                                        <span class="sr-only">required</span>
+                                    </label>
+                                    <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="" aria-describedby="email-label email-help email-error" aria-required="true">
+                                    <div id="email-help" class="field-help">
+                                        We'll never share your email with anyone else.
+                                    </div>
+                                </div>
+                                <div id="mce-responses" class="clear foot" role="alert" aria-live="polite">
+                                    <div class="response" id="mce-error-response" style="display: none;" role="alert"></div>
+                                    <div class="response" id="mce-success-response" style="display: none;" role="status"></div>
+                                </div>
+                                <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                                    /* real people should not fill this in and expect good things - do not remove this or risk form bot signups */
+                                    <input type="text" name="b_e6b978587cd4d25cdff6c9a1c_0994a7bc1b" tabindex="-1" value="">
+                                </div>
+                                <div class="optionalParent">
+                                    <div class="clear foot">
+                                        <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Sign up" aria-describedby="submit-help">
+                                        <div id="submit-help" class="sr-only">
+                                            Submits your email to our notification list
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
     
-    <div class="social-links">
-        <a href="https://www.facebook.com/profile.php?id=61571307931450" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
-        </a>
-        <a href="https://x.com/finemeshlabs" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg" alt="Twitter">
-        </a>
-        <a href="https://www.instagram.com/finemesh.labs/" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram">
-        </a>
-        <a href="https://bsky.app/profile/finemesh.bsky.social" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Bluesky_Logo.svg" alt="Bluesky">
-        </a>
-        <a href="https://www.youtube.com/@Finemesh" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube">
-        </a>
-        <a href="https://www.threads.net/@finemesh.labs" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Threads_%28app%29.svg" alt="Threads">
-        </a>
-    </div>
+    <footer role="contentinfo">
+        <nav aria-label="Social Media Links">
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61571307931450" target="_blank" aria-label="Visit Finemesh Labs on Facebook">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+                </a>
+                <a href="https://x.com/finemeshlabs" target="_blank" aria-label="Visit Finemesh Labs on X (formerly Twitter)">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg" alt="X">
+                </a>
+                <a href="https://www.instagram.com/finemesh.labs/" target="_blank" aria-label="Visit Finemesh Labs on Instagram">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram">
+                </a>
+                <a href="https://bsky.app/profile/finemesh.bsky.social" target="_blank" aria-label="Visit Finemesh Labs on Bluesky">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Bluesky_Logo.svg" alt="Bluesky">
+                </a>
+                <a href="https://www.youtube.com/@Finemesh" target="_blank" aria-label="Visit Finemesh Labs on YouTube">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube">
+                </a>
+                <a href="https://www.threads.net/@finemesh.labs" target="_blank" aria-label="Visit Finemesh Labs on Threads">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Threads_%28app%29.svg" alt="Threads">
+                </a>
+            </div>
+        </nav>
+    </footer>
 </body>
 </html>

@@ -512,6 +512,110 @@ function initTitleAnimation() {
 }
 
 /* ===================================
+   ACCESSIBILITY UTILITIES
+   =================================== */
+
+/**
+ * Announce message to screen readers
+ * @param {string} message - The message to announce
+ */
+function announceToScreenReader(message) {
+    const announcement = document.createElement('div');
+    announcement.setAttribute('aria-live', 'polite');
+    announcement.setAttribute('aria-atomic', 'true');
+    announcement.className = 'sr-only';
+    announcement.textContent = message;
+    document.body.appendChild(announcement);
+    
+    setTimeout(() => {
+        if (document.body.contains(announcement)) {
+            document.body.removeChild(announcement);
+        }
+    }, 1000);
+}
+
+/**
+ * Trap focus within a container
+ * @param {HTMLElement} container - The container to trap focus in
+ */
+function trapFocus(container) {
+    const focusableElements = container.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    const handleKeyDown = (e) => {
+        if (e.key === 'Tab') {
+            if (e.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    lastElement.focus();
+                    e.preventDefault();
+                }
+            } else {
+                if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    e.preventDefault();
+                }
+            }
+        }
+        
+        if (e.key === 'Escape') {
+            container.removeEventListener('keydown', handleKeyDown);
+        }
+    };
+    
+    container.addEventListener('keydown', handleKeyDown);
+    firstElement.focus();
+}
+
+/* ===================================
+   KEYBOARD NAVIGATION
+   =================================== */
+
+/**
+ * Initialize keyboard navigation enhancements
+ */
+function initKeyboardNavigation() {
+    // Handle Escape key for closing modals or resetting forms
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            // Reset form if it has focus
+            const form = document.getElementById('mc-embedded-subscribe-form');
+            const emailInput = document.getElementById('mce-EMAIL');
+            
+            if (form && form.contains(document.activeElement)) {
+                if (emailInput) {
+                    emailInput.value = '';
+                    emailInput.focus();
+                    announceToScreenReader('Form reset');
+                }
+            }
+        }
+        
+        // Handle Enter key on social links
+        if (e.key === 'Enter') {
+            const focusedElement = document.activeElement;
+            if (focusedElement && focusedElement.classList.contains('social-link')) {
+                focusedElement.click();
+            }
+        }
+    });
+    
+    // Add keyboard shortcut for newsletter signup (Ctrl/Cmd + K)
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            const emailInput = document.getElementById('mce-EMAIL');
+            if (emailInput) {
+                emailInput.focus();
+                announceToScreenReader('Newsletter signup form focused');
+            }
+        }
+    });
+}
+
+/* ===================================
    FORM HANDLING
    =================================== */
 
@@ -532,24 +636,74 @@ function initFormHandling() {
            submitButton.style.cursor = 'not-allowed';
            submitButton.disabled = true;
            
+           // Announce to screen readers
+           announceToScreenReader('Subscribing to newsletter...');
+           
            // Reset button after 3 seconds (in case there's no response)
            setTimeout(() => {
                submitButton.value = originalText;
                submitButton.style.opacity = '1';
                submitButton.style.cursor = 'pointer';
                submitButton.disabled = false;
+               
+               // Announce completion if still on page
+               if (document.body.contains(subscribeForm)) {
+                   announceToScreenReader('Subscription process completed');
+               }
            }, 3000);
        });
+       
+       // Handle form validation errors
+       const errorResponse = document.getElementById('mce-error-response');
+       const successResponse = document.getElementById('mce-success-response');
+       
+       if (errorResponse) {
+           const observer = new MutationObserver(function(mutations) {
+               mutations.forEach(function(mutation) {
+                   if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                       if (errorResponse.style.display !== 'none') {
+                           announceToScreenReader('Form submission error: ' + errorResponse.textContent);
+                           emailInput.focus();
+                       }
+                   }
+               });
+           });
+           observer.observe(errorResponse, { attributes: true });
+       }
+       
+       if (successResponse) {
+           const observer = new MutationObserver(function(mutations) {
+               mutations.forEach(function(mutation) {
+                   if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                       if (successResponse.style.display !== 'none') {
+                           announceToScreenReader('Successfully subscribed to newsletter');
+                       }
+                   }
+               });
+           });
+           observer.observe(successResponse, { attributes: true });
+       }
    }
    
-   // Add input animation effect
+   // Add input animation effect and accessibility enhancements
    if (emailInput) {
        emailInput.addEventListener('focus', function() {
            this.parentElement.style.transform = 'scale(1.02)';
+           announceToScreenReader('Email input field focused');
        });
        
        emailInput.addEventListener('blur', function() {
            this.parentElement.style.transform = 'scale(1)';
+       });
+       
+       // Add input validation feedback
+       emailInput.addEventListener('input', function() {
+           const isValid = this.checkValidity() && this.value.length > 0;
+           if (isValid) {
+               this.setAttribute('aria-invalid', 'false');
+           } else if (this.value.length > 0) {
+               this.setAttribute('aria-invalid', 'true');
+           }
        });
    }
 }
@@ -565,6 +719,9 @@ document.addEventListener('DOMContentLoaded', function() {
    // Initialize title animation
    initTitleAnimation();
    
+   // Initialize keyboard navigation
+   initKeyboardNavigation();
+   
    // Initialize form handling
    initFormHandling();
    
@@ -574,4 +731,74 @@ document.addEventListener('DOMContentLoaded', function() {
        const fieldName = dropdown?.id.replace('country-select-', '');
        initializeSmsPhoneDropdown(fieldName);
    });
+   
+   // Add social link keyboard support
+   const socialLinks = document.querySelectorAll('.social-links a');
+   socialLinks.forEach(function(link) {
+       link.classList.add('social-link');
+       link.setAttribute('role', 'button');
+       link.setAttribute('tabindex', '0');
+   });
+   
+   // Announce page load to screen readers
+   setTimeout(() => {
+       announceToScreenReader('Finemesh Labs coming soon page loaded');
+   }, 500);
 });
+
+/* ===================================
+   TOUCH AND GESTURE SUPPORT
+   =================================== */
+
+/**
+ * Initialize touch gesture support for mobile devices
+ */
+function initTouchSupport() {
+   // Add touch feedback for interactive elements
+   const touchElements = document.querySelectorAll('button, a, input');
+   
+   touchElements.forEach(element => {
+       element.addEventListener('touchstart', function() {
+           this.style.transform = 'scale(0.98)';
+       }, { passive: true });
+       
+       element.addEventListener('touchend', function() {
+           this.style.transform = 'scale(1)';
+       }, { passive: true });
+   });
+}
+
+// Initialize touch support when DOM is ready
+if ('ontouchstart' in window) {
+   document.addEventListener('DOMContentLoaded', initTouchSupport);
+}
+
+/* ===================================
+   PERFORMANCE OPTIMIZATION
+   =================================== */
+
+/**
+ * Optimize images for different screen densities
+ */
+function optimizeImages() {
+   const images = document.querySelectorAll('img[src*="wikimedia.org"]');
+   
+   images.forEach(img => {
+       // Add loading attribute for lazy loading
+       if (!img.hasAttribute('loading')) {
+           img.setAttribute('loading', 'lazy');
+       }
+       
+       // Optimize for high DPI displays
+       if (window.devicePixelRatio > 1) {
+           const src = img.getAttribute('src');
+           if (src && !src.includes('svg')) {
+               // For raster images, we could serve higher resolution versions
+               img.style.imageRendering = 'crisp-edges';
+           }
+       }
+   });
+}
+
+// Initialize image optimization
+document.addEventListener('DOMContentLoaded', optimizeImages);
